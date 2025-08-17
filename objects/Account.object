@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <validationRules>
+        <fullName>ACT001_Account_Number_8_Characters</fullName>
+        <active>false</active>
+        <description>Account numbers must be exactly eight characters long when populated.</description>
+        <errorConditionFormula>AND( NOT( ISBLANK( AccountNumber ) ), LEN( AccountNumber )!=8   )</errorConditionFormula>
+        <errorDisplayField>AccountNumber</errorDisplayField>
+        <errorMessage>Account number must be 8 characters long [ACT001]</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>whenever_ownship_is_public_Annual_revenu</fullName>
         <active>false</active>
         <description>whenever ownship is public Annual_revenu should not be null</description>
