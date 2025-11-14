@@ -1,0 +1,42 @@
+public class AccountTriggerHandler {
+
+    public void beforeInsert(List<Account> newList) {
+        for(Account acc : newList){
+            acc.Description = 'Created from Trigger';
+        }
+    }
+
+    public void beforeUpdate(List<Account> newList, Map<Id,Account> oldMap) {
+        for(Account acc : newList){
+            Account oldAcc = oldMap.get(acc.Id);
+            if(acc.Phone != oldAcc.Phone){
+                acc.Description = 'Phone number updated';
+            }
+        }
+    }
+
+    public void beforeDelete(List<Account> oldList){
+        // Example: prevent delete
+        for(Account acc : oldList){
+            if(acc.Type == 'Important'){
+                acc.addError('You cannot delete important accounts');
+            }
+        }
+    }
+
+    public void afterInsert(List<Account> newList){
+        // Example: log records or send email
+    }
+
+    public void afterUpdate(List<Account> newList, Map<Id,Account> oldMap){
+        // Example: update related records
+    }
+
+    public void afterDelete(List<Account> oldList){
+        // Example: cleanup child records
+    }
+
+    public void afterUndelete(List<Account> newList){
+        // Example: restore related data
+    }
+}
